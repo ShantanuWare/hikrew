@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_bookings",
+  "info": {
+    "singularName": "user-booking",
+    "pluralName": "user-bookings",
+    "displayName": "UserBooking"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "MobileNumber": {
+      "type": "text",
+      "required": true
+    },
+    "AadharNumber": {
+      "type": "text",
+      "required": true
+    },
+    "SeatsNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "PaymentStatus": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Email": {
+      "type": "email",
+      "required": true
+    }
+  }
+}

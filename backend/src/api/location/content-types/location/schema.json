@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "locations",
+  "info": {
+    "singularName": "location",
+    "pluralName": "locations",
+    "displayName": "Trip",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Location": {
+      "type": "string"
+    },
+    "AdventureType": {
+      "type": "enumeration",
+      "enum": [
+        "Trekking",
+        "Camping",
+        "RockClimbing "
+      ],
+      "required": true
+    },
+    "Date": {
+      "type": "date",
+      "required": true
+    },
+    "PickupLocation": {
+      "type": "string",
+      "required": true
+    },
+    "Price": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Inclusions": {
+      "type": "json"
+    },
+    "Exclusions": {
+      "type": "json"
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "Difficulties": {
+      "type": "json"
+    },
+    "duration": {
+      "type": "json"
+    }
+  }
+}

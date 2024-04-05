@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_trip_details_trip_details",
+  "info": {
+    "displayName": "TripDetails"
+  },
+  "options": {},
+  "attributes": {
+    "timeline": {
+      "type": "blocks"
+    }
+  }
+}
