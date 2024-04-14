@@ -7,11 +7,7 @@ function Places({ data, service }) {
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
           <img
             className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src={
-              process.env.BACKEND_URL +
-              "" +
-              data?.attributes.Thumbnail.data.attributes.url
-            }
+            src={data?.attributes.Thumbnail.data.attributes.url}
             alt="camping"
           ></img>
           <div className="p-6">

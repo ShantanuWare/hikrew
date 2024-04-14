@@ -8,9 +8,7 @@ function TripCard({ data }) {
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
           <img
             className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src={
-              process.env.BACKEND_URL + "" + data?.Images.data[0].attributes.url
-            }
+            src={data?.Images.data[0].attributes.url}
             alt="camping"
           ></img>
           <div className="p-6">

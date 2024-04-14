@@ -14,7 +14,7 @@ async function getData(Location) {
 
 async function RockClimbingTrips(props) {
   const data = await getData(props.searchParams.Location);
-  console.log(data);
+
   return (
     <div className="py-8 text-black font-lobster">
       <div className="container mx-auto">

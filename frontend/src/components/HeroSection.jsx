@@ -14,20 +14,13 @@ async function HeroSection() {
     <div>
       {/* Hero card */}
       <div className="relative mt-16">
-        {console.log(
-          `${process.env.BACKEND_URL}${data?.data.attributes.HeroSectionImg.data.attributes.url}`
-        )}
         <div className="absolute inset-x-0 bottom-0 " />
         <div className="container mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl h-[60vh] sm:overflow-hidden">
             <div className="absolute inset-0">
               <img
                 className="h-full w-full object-cover"
-                src={
-                  process.env.BACKEND_URL +
-                  "" +
-                  data?.data.attributes.HeroSectionImg.data.attributes.url
-                }
+                src={data?.data.attributes.HeroSectionImg.data.attributes.url}
                 alt="hero section"
               />
               <div className="absolute inset-0 mix-blend-multiply" />

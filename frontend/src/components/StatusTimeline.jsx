@@ -1,7 +1,6 @@
 const StatusTimeline = ({ data }) => {
   return (
     <div className="container">
-      {console.log(data)}
       <div className="flex flex-col md:grid grid-cols-12 text-gray-50">
         {data.map((item, index) => (
           <div className="flex md:contents" key={index}>

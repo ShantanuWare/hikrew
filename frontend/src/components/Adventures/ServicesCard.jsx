@@ -6,7 +6,7 @@ function ServicesCard({ data }) {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={process.env.BACKEND_URL + "" + data?.image.data.attributes.url}
+          src={data?.image.data.attributes.url}
           alt="service"
         ></img>
         <div className="p-6">

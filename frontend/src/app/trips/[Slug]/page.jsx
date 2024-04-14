@@ -14,12 +14,6 @@ async function TripDetails(props) {
   const trip = await getData(props.params.Slug);
   return (
     <div className=" py-8 text-black font-lobster">
-      {console.log(trip.data[0])}
-      {console.log(
-        process.env.BACKEND_URL +
-          "" +
-          trip[0]?.attributes.Images.data[0].attributes.url
-      )}
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold ">Trip Details</h2>
@@ -31,11 +25,7 @@ async function TripDetails(props) {
               <div className="absolute inset-0">
                 <img
                   className="h-full w-full object-cover"
-                  src={
-                    process.env.BACKEND_URL +
-                    "" +
-                    trip.data[0]?.attributes.Images.data[0].attributes.url
-                  }
+                  src={trip.data[0]?.attributes.Images.data[0].attributes.url}
                   alt="hero section"
                 />
                 <div className="absolute inset-0 mix-blend-multiply" />
@@ -46,6 +36,7 @@ async function TripDetails(props) {
             <h1 className=" text-2xl  w-full ml-4  font-extrabold tracking-tight sm:text-3xl lg:text-4xl ">
               {trip.data[0]?.attributes?.PickupLocation} to{" "}
               {trip.data[0]?.attributes?.Location},
+              {" ( " + trip.data[0]?.attributes?.AdventureType + " )"}
             </h1>
 
             <div className="sm:flex items-end">
