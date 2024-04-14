@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,46 +788,29 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiAboutUsAboutUs extends Schema.SingleType {
+  collectionName: 'about_uses';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'about-us';
+    pluralName: 'about-uses';
+    displayName: 'AboutUs';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
+    WhoWeAre: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-us.about-us',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-us.about-us',
       'oneToOne',
       'admin::user'
     > &
@@ -838,7 +868,7 @@ export interface ApiDestinationDestination extends Schema.CollectionType {
     Location: Attribute.String & Attribute.Required;
     Discription: Attribute.Text;
     Category: Attribute.Enumeration<
-      ['camping', 'trekking-trips', 'rock-climbing']
+      ['Camping', 'Trekking-trips', 'RockClimbing']
     > &
       Attribute.Required;
     NoOfTrips: Attribute.Integer &
@@ -868,11 +898,41 @@ export interface ApiDestinationDestination extends Schema.CollectionType {
   };
 }
 
-export interface ApiLocationLocation extends Schema.CollectionType {
-  collectionName: 'locations';
+export interface ApiHeroSectionHeroSection extends Schema.SingleType {
+  collectionName: 'hero_sections';
   info: {
-    singularName: 'location';
-    pluralName: 'locations';
+    singularName: 'hero-section';
+    pluralName: 'hero-sections';
+    displayName: 'HeroSection';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    HeroSectionImg: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hero-section.hero-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hero-section.hero-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTripTrip extends Schema.CollectionType {
+  collectionName: 'trips';
+  info: {
+    singularName: 'trip';
+    pluralName: 'trips';
     displayName: 'Trip';
     description: '';
   };
@@ -882,7 +942,7 @@ export interface ApiLocationLocation extends Schema.CollectionType {
   attributes: {
     Location: Attribute.String;
     AdventureType: Attribute.Enumeration<
-      ['Trekking', 'Camping', 'RockClimbing ']
+      ['Trekking', 'Camping', 'RockClimbing']
     > &
       Attribute.Required;
     Date: Attribute.Date & Attribute.Required;
@@ -896,25 +956,22 @@ export interface ApiLocationLocation extends Schema.CollectionType {
         number
       >;
     Images: Attribute.Media & Attribute.Required;
-    Inclusions: Attribute.JSON;
-    Exclusions: Attribute.JSON;
     Discription: Attribute.Text;
-    Difficulties: Attribute.JSON;
-    duration: Attribute.JSON;
+    Duration: Attribute.JSON;
+    Slug: Attribute.UID & Attribute.Required;
+    Time: Attribute.String;
+    Vendor_name: Attribute.String & Attribute.Required;
+    Difficulties: Attribute.Blocks;
+    Exclusions: Attribute.Blocks;
+    Inclusion: Attribute.Blocks;
+    ThingsToCarry: Attribute.Blocks;
+    Itinerary: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::trip.trip', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::trip.trip', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -925,6 +982,7 @@ export interface ApiUserBookingUserBooking extends Schema.CollectionType {
     singularName: 'user-booking';
     pluralName: 'user-bookings';
     displayName: 'UserBooking';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -938,6 +996,11 @@ export interface ApiUserBookingUserBooking extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<false>;
     Email: Attribute.Email & Attribute.Required;
+    trip: Attribute.Relation<
+      'api::user-booking.user-booking',
+      'oneToOne',
+      'api::trip.trip'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1012,13 +1075,15 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::category.category': ApiCategoryCategory;
       'api::destination.destination': ApiDestinationDestination;
-      'api::location.location': ApiLocationLocation;
+      'api::hero-section.hero-section': ApiHeroSectionHeroSection;
+      'api::trip.trip': ApiTripTrip;
       'api::user-booking.user-booking': ApiUserBookingUserBooking;
       'api::vendor.vendor': ApiVendorVendor;
     }

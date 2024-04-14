@@ -1,17 +1,33 @@
-import React from "react";
-
-function HeroSection() {
+async function getData(Slug) {
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/hero-section?populate=*`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+async function HeroSection() {
+  const data = await getData();
   return (
     <div>
       {/* Hero card */}
       <div className="relative mt-16">
+        {console.log(
+          `${process.env.BACKEND_URL}${data?.data.attributes.HeroSectionImg.data.attributes.url}`
+        )}
         <div className="absolute inset-x-0 bottom-0 " />
         <div className="container mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl h-[60vh] sm:overflow-hidden">
             <div className="absolute inset-0">
               <img
                 className="h-full w-full object-cover"
-                src={"/assets/hero1.jpg"}
+                src={
+                  process.env.BACKEND_URL +
+                  "" +
+                  data?.data.attributes.HeroSectionImg.data.attributes.url
+                }
                 alt="hero section"
               />
               <div className="absolute inset-0 mix-blend-multiply" />

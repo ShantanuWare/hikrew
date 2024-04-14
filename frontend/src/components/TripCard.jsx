@@ -1,28 +1,30 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-
-function Trip() {
+import { formatDate, formatDuration } from "@/utils/utils";
+function TripCard({ data }) {
   return (
-    <section className="p-4 md:w-1/3">
-      <Link href={``}>
+    <section className="">
+      <Link href={`/trips/${data?.Slug}`}>
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
           <img
             className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src="https://10web-site.ai/59/wp-content/uploads/sites/62/2024/03/evelyn-paris-QR_vT8_hBZM-unsplash_lRYSd1z9.webp"
+            src={
+              process.env.BACKEND_URL + "" + data?.Images.data[0].attributes.url
+            }
             alt="camping"
           ></img>
           <div className="p-6">
             <div className="flex justify-between">
               <h1 className="title-font text-lg font-medium text-gray-900 ">
-                {"Sunrise trek"} to {"Kalsubai Pune"}
+                {data?.PickupLocation} to {data?.Location}
               </h1>
-              <div>28 Mar, 7:00 PM</div>
+              <div>
+                {formatDate(data?.Date)}, {data?.Time}
+              </div>
             </div>
             <div className="flex justify-between">
-              <p className="leading-relaxed mb-3">
-                Deccan Gymkhana, Maharashtra
-              </p>
-              <div>1 Night 1 Day</div>
+              <p className="leading-relaxed mb-3">{data?.Vendor_name}</p>
+              <div>{formatDuration(data?.Duration)}</div>
             </div>
 
             <div className="flex items-center flex-wrap ">
@@ -42,7 +44,8 @@ function Trip() {
                 </svg>
               </div>
               <span className=" inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-mm  py-1 ">
-                Price ₹ <span className="text-blue-800 mx-1"> 1,349</span>
+                Price ₹{" "}
+                <span className="text-blue-800 mx-1"> {data?.Price}</span>
               </span>
             </div>
           </div>
@@ -52,4 +55,4 @@ function Trip() {
   );
 }
 
-export default Trip;
+export default TripCard;

@@ -1,8 +1,7 @@
-import React from "react";
-
 const StatusTimeline = ({ data }) => {
   return (
     <div className="container">
+      {console.log(data)}
       <div className="flex flex-col md:grid grid-cols-12 text-gray-50">
         {data.map((item, index) => (
           <div className="flex md:contents" key={index}>
@@ -15,9 +14,9 @@ const StatusTimeline = ({ data }) => {
               </div>
             </div>
             <div className="bg-green-500 col-start-2 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-              <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
+              <h3 className="font-semibold text-lg mb-1">{item.day}</h3>
               <ul className="leading-tight text-justify">
-                {item.points.map((point, pointIndex) => (
+                {item.activities.map((point, pointIndex) => (
                   <li key={pointIndex}>{point}</li>
                 ))}
               </ul>

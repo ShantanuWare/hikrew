@@ -1,55 +1,50 @@
+import TripCard from "@/components/TripCard";
 import Adventures from "../components/Adventures";
 import HeroSection from "../components/HeroSection";
+async function getData(Location) {
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/trips?filters[AdventureType]=Camping&filters[PickupLocation]=Pune&populate=*`,
 
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await res.json();
+  return data.data;
+}
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default async function Home() {
+  const data = await getData();
   return (
     <div className="min-h-screen bg-white font-lobster text-black">
       <main>
         <div>
           <HeroSection />
           {/* Logo cloud */}
-          <div className="">
-            <div className="container px-8 mx-auto py-16  sm:px-6 lg:px-8">
-              <div className="text-center mb-10">
-                <h2 className="text-4xl font-bold ">Who we are</h2>
-              </div>
-              <p className="text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                nam quia sequi porro aperiam possimus, molestias pariatur
-                corporis illum quidem facilis ipsum unde voluptatem repellat
-                veritatis est perspiciatis, ab mollitia obcaecati natus
-                eligendi, praesentium in? Qui quos voluptatibus voluptate
-                similique consequatur saepe explicabo eveniet. Sit alias quis
-                sed veritatis ut illo! Dolore, excepturi quaerat ab dignissimos
-                ullam sequi quam ad inventore ut facilis. Provident ratione quia
-                quis illum voluptates quisquam numquam perferendis repellendus
-                doloribus sapiente velit officia iusto aspernatur distinctio,
-                aliquam iure, repudiandae obcaecati dolorem placeat nihil odio
-                assumenda. Rerum quis atque quisquam deleniti expedita quos
-                accusamus optio praesentium ut! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Pariatur, explicabo natus dolor ex
-                nesciunt illum ipsam. Impedit, aperiam at tenetur dolor quos
-                eius vero voluptatem, beatae asperiores incidunt consequuntur
-                ea? Eos, natus? Molestias consectetur vero at obcaecati
-                suscipit, dolorem aliquid aliquam iste natus vel labore ipsum
-                atque laborum quaerat doloremque, voluptates totam, repellat nam
-                saepe! Ad, consequuntur. Reiciendis cupiditate ratione, odit
-                eligendi at excepturi quam, omnis similique ipsum magni amet
-                voluptatem velit porro accusantium natus aperiam nam ab
-                aspernatur quo hic sint autem. Consequuntur iste sequi non
-                laudantium. Necessitatibus perferendis nesciunt sunt officia
-                optio saepe animi quae maxime itaque aut?
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* More main page content here... */}
         <Adventures />
+
+        {/* trips */}
+        <div className="container mx-auto mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold"> Trips From Pune</h2>
+          </div>
+          <div className="container px-5 py-2 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              {data.map((data, index) => (
+                <div key={index} className="p-4 md:w-1/3">
+                  <TripCard data={data.attributes} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );

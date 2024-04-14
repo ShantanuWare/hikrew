@@ -1,6 +1,17 @@
 import Places from "@/components/Places";
+async function getData() {
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/destinations?filters[Category]=RockClimbing&populate=*`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
 
-function RockClimbing() {
+async function RockClimbing() {
+  const rockClimbing = await getData();
   return (
     <div className=" py-8 text-black font-lobster">
       <div className="container mx-auto">
@@ -9,11 +20,11 @@ function RockClimbing() {
         </div>
         <div className="container px-5 py-2 mx-auto">
           <div className="flex flex-wrap -m-4">
-            <Places service={"rockclimbing"}></Places>
-            <Places service={"rockclimbing"}></Places>
-            <Places service={"rockclimbing"}></Places>
-            <Places service={"rockclimbing"}></Places>
-            <Places service={"rockclimbing"}></Places>
+            {rockClimbing.data.map((data, index) => (
+              <div key={index} className="p-4 md:w-1/3">
+                <Places data={data} service={"rock-climbing"}></Places>
+              </div>
+            ))}
           </div>
         </div>
       </div>

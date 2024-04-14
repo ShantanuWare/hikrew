@@ -1,23 +1,25 @@
 import Link from "next/link";
-import React from "react";
 
-function Places({ service }) {
+function Places({ data, service }) {
   return (
-    <section className="p-4 md:w-1/3">
-      <Link href={`${service}/trip`}>
+    <section className="">
+      <Link href={`${service}/trip?Location=${data?.attributes?.Location}`}>
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
           <img
             className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src="https://10web-site.ai/59/wp-content/uploads/sites/62/2024/03/evelyn-paris-QR_vT8_hBZM-unsplash_lRYSd1z9.webp"
+            src={
+              process.env.BACKEND_URL +
+              "" +
+              data?.attributes.Thumbnail.data.attributes.url
+            }
             alt="camping"
           ></img>
           <div className="p-6">
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-              RajGad
+              {data?.attributes?.Location}
             </h1>
             <p className="leading-relaxed mb-3">
-              Experience the thrill of camping under the stars and climbing
-              rugged terrain with our Camping and Rock Climbing trips.
+              {data?.attributes?.Discription}
             </p>
             <div className="flex items-center flex-wrap ">
               <div className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">

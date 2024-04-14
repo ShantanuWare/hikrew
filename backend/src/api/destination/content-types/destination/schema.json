@@ -22,9 +22,9 @@
     "Category": {
       "type": "enumeration",
       "enum": [
-        "camping",
-        "trekking-trips",
-        "rock-climbing"
+        "Camping",
+        "Trekking-trips",
+        "RockClimbing"
       ],
       "required": true
     },
@@ -34,11 +34,12 @@
       "min": 0
     },
     "Thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

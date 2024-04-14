@@ -1,7 +1,12 @@
 import ServicesCard from "./Adventures/ServicesCard";
 
 async function getData() {
-  const res = await fetch("http://localhost:1337/api/categories");
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/categories?populate=image`,
+    {
+      cache: "no-store",
+    }
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }

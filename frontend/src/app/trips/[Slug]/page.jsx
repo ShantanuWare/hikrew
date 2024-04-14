@@ -1,44 +1,25 @@
 import StatusTimeline from "@/components/StatusTimeline";
-import Trip from "@/components/Trip";
-
-function TripDetails() {
-  const data = [
-    {
-      title: "Day1",
-      color: "green-500",
-      icon: "fas fa-check-circle",
-      points: ["Point 1", "Point 2", "Point 3"],
-    },
-    {
-      title: "Day2",
-      color: "red-500",
-      icon: "fas fa-times-circle",
-      points: ["Point 1", "Point 2"],
-    },
-    {
-      title: "Day3",
-      color: "gray-300",
-      icon: "fas fa-exclamation-circle",
-      points: ["Point 1", "Point 2", "Point 3", "Point 4"],
-    },
-  ];
-  const dosData = [
-    "Do prioritize accessibility in your designs.",
-    "Do test your website on multiple devices and browsers.",
-    "Do use semantic HTML for better SEO and accessibility.",
-    "Do keep your codebase clean and maintainable.",
-    "Do regularly backup your website data.",
-  ];
-
-  const dontsData = [
-    "Don't use autoplaying audio or video.",
-    "Don't rely solely on color to convey information.",
-    "Don't neglect mobile responsiveness.",
-    "Don't use intrusive pop-ups or ads.",
-    "Don't forget to optimize images and assets for the web.",
-  ];
+import { formatDate, renderRichText } from "@/utils/utils";
+async function getData(Slug) {
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/trips?filters[Slug]=${Slug}&populate=*`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+async function TripDetails(props) {
+  const trip = await getData(props.params.Slug);
   return (
     <div className=" py-8 text-black font-lobster">
+      {console.log(trip.data[0])}
+      {console.log(
+        process.env.BACKEND_URL +
+          "" +
+          trip[0]?.attributes.Images.data[0].attributes.url
+      )}
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold ">Trip Details</h2>
@@ -50,7 +31,11 @@ function TripDetails() {
               <div className="absolute inset-0">
                 <img
                   className="h-full w-full object-cover"
-                  src="https://10web-site.ai/59/wp-content/uploads/sites/62/2024/03/soroush-karimi-crjPrExvShc-unsplash_lRYSd1z9.webp"
+                  src={
+                    process.env.BACKEND_URL +
+                    "" +
+                    trip.data[0]?.attributes.Images.data[0].attributes.url
+                  }
                   alt="hero section"
                 />
                 <div className="absolute inset-0 mix-blend-multiply" />
@@ -59,7 +44,8 @@ function TripDetails() {
           </div>
           <div className="  text-black  max-w-7xl  mx-auto py-6  px-4   ">
             <h1 className=" text-2xl  w-full ml-4  font-extrabold tracking-tight sm:text-3xl lg:text-4xl ">
-              Sunrise trek to Kalsubai Pune,
+              {trip.data[0]?.attributes?.PickupLocation} to{" "}
+              {trip.data[0]?.attributes?.Location},
             </h1>
 
             <div className="sm:flex items-end">
@@ -79,7 +65,9 @@ function TripDetails() {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <span className="mb-1 mx-4">Time sdfasdf</span>
+              <span className="mb-1 mx-4">
+                {trip.data[0]?.attributes?.Time},
+              </span>
               <svg
                 data-slot="icon"
                 aria-hidden="true"
@@ -97,7 +85,7 @@ function TripDetails() {
                 ></path>
               </svg>
               <span className="mb-1 mx-4">
-                28 Mar, 29 Mar, 30 Mar, and more
+                {formatDate(trip.data[0]?.attributes?.Date)},
               </span>
               <svg
                 data-slot="icon"
@@ -120,7 +108,9 @@ function TripDetails() {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <span className="mb-1 mx-4">Deccan Gymkhana, Maharashtra</span>
+              <span className="mb-1 mx-4">
+                {trip.data[0]?.attributes?.Location},
+              </span>
             </div>
           </div>
           <div className="  text-black  max-w-7xl  mx-auto py-2  px-8   ">
@@ -135,31 +125,8 @@ function TripDetails() {
             <h1 className=" text-2xl  w-full ml-4  font-extrabold tracking-tight sm:text-3xl lg:text-4xl ">
               Overview{" "}
             </h1>
-            <p className="ml-4 text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nam
-              quia sequi porro aperiam possimus, molestias pariatur corporis
-              illum quidem facilis ipsum unde voluptatem repellat veritatis est
-              perspiciatis, ab mollitia obcaecati natus eligendi, praesentium
-              in? Qui quos voluptatibus voluptate similique consequatur saepe
-              explicabo eveniet. Sit alias quis sed veritatis ut illo! Dolore,
-              excepturi quaerat ab dignissimos ullam sequi quam ad inventore ut
-              facilis. Provident ratione quia quis illum voluptates quisquam
-              numquam perferendis repellendus doloribus sapiente velit officia
-              iusto aspernatur distinctio, aliquam iure, repudiandae obcaecati
-              dolorem placeat nihil odio assumenda. Rerum quis atque quisquam
-              deleniti expedita quos accusamus optio praesentium ut! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Pariatur, explicabo
-              natus dolor ex nesciunt illum ipsam. Impedit, aperiam at tenetur
-              dolor quos eius vero voluptatem, beatae asperiores incidunt
-              consequuntur ea? Eos, natus? Molestias consectetur vero at
-              obcaecati suscipit, dolorem aliquid aliquam iste natus vel labore
-              ipsum atque laborum quaerat doloremque, voluptates totam, repellat
-              nam saepe! Ad, consequuntur. Reiciendis cupiditate ratione, odit
-              eligendi at excepturi quam, omnis similique ipsum magni amet
-              voluptatem velit porro accusantium natus aperiam nam ab aspernatur
-              quo hic sint autem. Consequuntur iste sequi non laudantium.
-              Necessitatibus perferendis nesciunt sunt officia optio saepe animi
-              quae maxime itaque aut?
+            <p className="ml-4 mt-2 text-justify">
+              {trip.data[0]?.attributes?.Discription},
             </p>
           </div>
           <div className="  text-black  max-w-7xl  mx-auto py-2  px-4 mt-4   ">
@@ -172,21 +139,13 @@ function TripDetails() {
                   <h2 className="text-xl font-semibold mb-2">
                     What is included in the tour
                   </h2>
-                  <ul className="list-disc pl-4">
-                    {dosData.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+                  {renderRichText(trip.data[0]?.attributes?.Inclusion)}
                 </div>
                 <div className="rounded-lg bg-white shadow-md p-4">
                   <h2 className="text-xl font-semibold mb-2">
                     What is NOT included in the tour
                   </h2>
-                  <ul className="list-disc pl-4">
-                    {dontsData.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+                  {renderRichText(trip.data[0]?.attributes?.Exclusions)}
                 </div>
               </div>
             </div>
@@ -200,24 +159,29 @@ function TripDetails() {
                 <h1 className="text-4xl text-center font-semibold mb-6">
                   tour timeline
                 </h1>
-                <StatusTimeline data={data}></StatusTimeline>
+                <StatusTimeline
+                  data={trip.data[0]?.attributes?.Itinerary.days}
+                ></StatusTimeline>
               </div>
             </div>
           </div>
-          <div className="  text-black  max-w-7xl  mx-auto py-2  px-8   ">
+          <div className="  text-black  max-w-7xl  mx-auto py-2  px-4 mt-4   ">
             <h1 className=" text-2xl  w-full ml-4  font-extrabold tracking-tight sm:text-3xl lg:text-4xl ">
-              Things To Carry{" "}
+              Things To Carry. And Difficulties{" "}
             </h1>
-            <div className="rounded-lg bg-white shadow-md p-4">
-              <ul className="list-disc pl-4">
-                {/* {dontsData.map((item, index) => (
-                  ))} */}
-                <li>Good Trekking shoes</li>
-                <li>Good Trekking shoes</li>
-                <li>Good Trekking shoes</li>
-                <li>Good Trekking shoes</li>
-                <li>Good Trekking shoes</li>
-              </ul>
+            <div className="container mx-auto px-4 py-4">
+              <div className="sm:grid grid-cols-2 gap-4">
+                <div className="rounded-lg bg-white shadow-md p-4">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Things To Carry
+                  </h2>
+                  {renderRichText(trip.data[0]?.attributes?.ThingsToCarry)}
+                </div>
+                <div className="rounded-lg bg-white shadow-md p-4">
+                  <h2 className="text-xl font-semibold mb-2">Difficulties</h2>
+                  {renderRichText(trip.data[0]?.attributes?.Difficulties)}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "locations",
+  "collectionName": "trips",
   "info": {
-    "singularName": "location",
-    "pluralName": "locations",
+    "singularName": "trip",
+    "pluralName": "trips",
     "displayName": "Trip",
     "description": ""
   },
@@ -20,7 +20,7 @@
       "enum": [
         "Trekking",
         "Camping",
-        "RockClimbing "
+        "RockClimbing"
       ],
       "required": true
     },
@@ -45,19 +45,36 @@
         "images"
       ]
     },
-    "Inclusions": {
-      "type": "json"
-    },
-    "Exclusions": {
-      "type": "json"
-    },
     "Discription": {
       "type": "text"
     },
-    "Difficulties": {
+    "Duration": {
       "type": "json"
     },
-    "duration": {
+    "Slug": {
+      "type": "uid",
+      "required": true
+    },
+    "Time": {
+      "type": "string"
+    },
+    "Vendor_name": {
+      "type": "string",
+      "required": true
+    },
+    "Difficulties": {
+      "type": "blocks"
+    },
+    "Exclusions": {
+      "type": "blocks"
+    },
+    "Inclusion": {
+      "type": "blocks"
+    },
+    "ThingsToCarry": {
+      "type": "blocks"
+    },
+    "Itinerary": {
       "type": "json"
     }
   }

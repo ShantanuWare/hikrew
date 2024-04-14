@@ -4,9 +4,12 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: "Who we are", href: "/" },
+  { name: "Home ", href: "/" },
+  { name: "Trips", href: "/trips" },
+  { name: "Who we are", href: "/about-us" },
   { name: "Terms", href: "/terms" },
   { name: "Contact Us", href: "/contact" },
 ];
@@ -15,7 +18,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function Navbar() {
+function Navbar(props) {
+  const pathname = usePathname();
   return (
     <div>
       <header className="">
@@ -66,13 +70,19 @@ function Navbar() {
                   </Popover>
 
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
-                      className="text-base font-medium text-gray-500 hover:text-gray-900"
+                      className={classNames(
+                        "text-base  font-medium",
+                        pathname === item.href
+                          ? "text-black"
+                          : "text-gray-500 hover:text-gray-900"
+                      )}
+                      // className="text-base font-medium text-gray-500 hover:text-gray-900"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </Popover.Group>
               </div>
