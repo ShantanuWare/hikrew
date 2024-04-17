@@ -1,4 +1,5 @@
 import StatusTimeline from "@/components/StatusTimeline";
+import Image from "next/image";
 import { formatDate, renderRichText } from "@/utils/utils";
 async function getData(Slug) {
   const res = await fetch(
@@ -23,10 +24,11 @@ async function TripDetails(props) {
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="relative   sm:rounded-2xl h-[60vh] sm:overflow-hidden">
               <div className="absolute inset-0">
-                <img
+                <Image
                   className="h-full w-full object-cover"
                   src={trip.data[0]?.attributes.Images.data[0].attributes.url}
                   alt="hero section"
+                  fill
                 />
                 <div className="absolute inset-0 mix-blend-multiply" />
               </div>
@@ -122,7 +124,7 @@ async function TripDetails(props) {
           </div>
           <div className="  text-black  max-w-7xl  mx-auto py-2  px-4 mt-4   ">
             <h1 className=" text-2xl  w-full ml-4  font-extrabold tracking-tight sm:text-3xl lg:text-4xl ">
-              What we'll give. What we won't{" "}
+              {"What we'll give. What we won't"}
             </h1>
             <div className="container mx-auto px-4 py-4">
               <div className="sm:grid grid-cols-2 gap-4">

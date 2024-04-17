@@ -1,15 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 
 function Places({ data, service }) {
   return (
     <section className="">
       <Link href={`${service}/trip?Location=${data?.attributes?.Location}`}>
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img
-            className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src={data?.attributes.Thumbnail.data.attributes.url}
-            alt="camping"
-          ></img>
+          <div className="lg:h-48 h-36 md:h-36 relative">
+            <Image
+              src={data?.attributes.Thumbnail.data.attributes.url}
+              alt="camping"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </div>
           <div className="p-6">
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
               {data?.attributes?.Location}
@@ -17,7 +22,7 @@ function Places({ data, service }) {
             <p className="leading-relaxed mb-3">
               {data?.attributes?.Discription}
             </p>
-            <div className="flex items-center flex-wrap ">
+            <div className="flex items-center flex-wrap">
               <div className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
                 View All Trips
                 <svg

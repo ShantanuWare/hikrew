@@ -1,14 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function ServicesCard({ data }) {
   return (
     <Link href={data?.Slug}>
-      <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-        <img
-          className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={data?.image.data.attributes.url}
-          alt="service"
-        ></img>
+      <div className="relative h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+        <div className="relative h-48 overflow-hidden">
+          <Image
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            src={data?.image.data.attributes.url}
+            alt="service"
+            layout="fill"
+          />
+        </div>
         <div className="p-6">
           <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
             {data?.Adventure}
@@ -17,7 +21,7 @@ function ServicesCard({ data }) {
             {data?.Adventure}
           </h1>
           <p className="leading-relaxed mb-3">{data?.Discription}</p>
-          <div className="flex items-center flex-wrap ">
+          <div className="flex items-center flex-wrap">
             <div className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
               View All Places
               <svg

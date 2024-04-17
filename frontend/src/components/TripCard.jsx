@@ -1,16 +1,22 @@
 "use client";
 import Link from "next/link";
 import { formatDate, formatDuration } from "@/utils/utils";
+import Image from "next/image";
+
 function TripCard({ data }) {
   return (
     <section className="">
       <Link href={`/trips/${data?.Slug}`}>
         <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-          <img
-            className="lg:h-48 md:h-36 w-full object-cover object-center"
-            src={data?.Images.data[0].attributes.url}
-            alt="camping"
-          ></img>
+          <div className="lg:h-48 md:h-36 relative">
+            <Image
+              src={data?.Images.data[0].attributes.url}
+              alt="camping"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </div>
           <div className="p-6">
             <div className="flex justify-between">
               <h1 className="title-font text-lg font-medium text-gray-900 ">
@@ -25,7 +31,7 @@ function TripCard({ data }) {
               <div>{formatDuration(data?.Duration)}</div>
             </div>
 
-            <div className="flex items-center flex-wrap ">
+            <div className="flex items-center flex-wrap">
               <div className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
                 View Trip Details
                 <svg

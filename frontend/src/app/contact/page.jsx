@@ -28,17 +28,18 @@ function page() {
                     Hikrew.Com
                   </h2>
                   <h3 className="text-gray-700    mt-4 text-xl text-justify">
-                    Got a question, feedback, or just want to say hello? Reach
-                    out to us, and we'll get back to you as soon as we can.
+                    {
+                      "Got a question, feedback, or just want to say hello? Reach out to us, and we'll get back to you as soon as we can."
+                    }
                   </h3>
                   <p className="text-gray-700   mt-4 text-xl text-justify">
-                    Email: hikrew763@gmail.com
+                    {"Email: hikrew763@gmail.com"}
                   </p>
                   <h3 className="text-gray-700   mt-4 text-xl text-justify">
-                    Instagram: @hikrew_
+                    {"Instagram: @hikrew_"}
                   </h3>
                   <h3 className="text-gray-700  mt-4 text-xl text-justify">
-                    YouTube: Hikrew
+                    {"YouTube: Hikrew"}
                   </h3>
                 </div>
               </div>
