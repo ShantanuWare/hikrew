@@ -1,7 +1,7 @@
 import Places from "@/components/Places";
 async function getData() {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/destinations?filters[Category]=RockClimbing&populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/destinations?filters[Category]=RockClimbing&populate=*`,
     { cache: "no-store" }
   );
   if (!res.ok) {

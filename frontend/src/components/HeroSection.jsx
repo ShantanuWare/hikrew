@@ -1,6 +1,6 @@
 async function getData(Slug) {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/hero-section?populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/hero-section?populate=*`,
     { cache: "no-store" }
   );
   if (!res.ok) {

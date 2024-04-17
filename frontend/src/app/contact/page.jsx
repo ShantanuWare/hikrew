@@ -34,9 +34,6 @@ function page() {
                   <p className="text-gray-700   mt-4 text-xl text-justify">
                     Email: hikrew763@gmail.com
                   </p>
-                  <h3 className="text-gray-700  mt-4 text-xl text-justify">
-                    Email: pratikhg.2001@gmail.com
-                  </h3>
                   <h3 className="text-gray-700   mt-4 text-xl text-justify">
                     Instagram: @hikrew_
                   </h3>

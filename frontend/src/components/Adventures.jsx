@@ -2,7 +2,7 @@ import ServicesCard from "./Adventures/ServicesCard";
 
 async function getData() {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/categories?populate=image`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=image`,
     {
       cache: "no-store",
     }

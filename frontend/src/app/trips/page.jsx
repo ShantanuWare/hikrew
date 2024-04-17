@@ -2,7 +2,7 @@ import TripCard from "@/components/TripCard";
 
 async function getData() {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/trips?populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trips?populate=*`,
 
     { cache: "no-store" }
   );

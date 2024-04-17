@@ -3,7 +3,7 @@ import Adventures from "../components/Adventures";
 import HeroSection from "../components/HeroSection";
 async function getData(Location) {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/trips?filters[PickupLocation]=Pune&populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trips?filters[PickupLocation]=Pune&populate=*`,
 
     { cache: "no-store" }
   );

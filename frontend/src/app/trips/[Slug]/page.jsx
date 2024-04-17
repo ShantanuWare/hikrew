@@ -2,7 +2,7 @@ import StatusTimeline from "@/components/StatusTimeline";
 import { formatDate, renderRichText } from "@/utils/utils";
 async function getData(Slug) {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/trips?filters[Slug]=${Slug}&populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trips?filters[Slug]=${Slug}&populate=*`,
     { cache: "no-store" }
   );
   if (!res.ok) {

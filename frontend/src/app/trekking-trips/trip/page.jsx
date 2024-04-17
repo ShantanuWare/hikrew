@@ -2,7 +2,7 @@ import TripCard from "@/components/TripCard";
 
 async function getData(Location) {
   const res = await fetch(
-    `${process.env.BACKEND_URL}/api/trips?filters[AdventureType]=Trekking&filters[Location]=${Location}&populate=*`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trips?filters[AdventureType]=Trekking&filters[Location]=${Location}&populate=*`,
 
     { cache: "no-store" }
   );
