@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      lobster: ["var(--font-lobster)"],
+      lobster: ['Merriweather', 'serif'],
     },
     extend: {
       backgroundImage: {
